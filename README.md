@@ -22,10 +22,12 @@ React upload
 ## How to run
 
 1. Install Docker
-2. Clone the repository
-3. Run `pnpm install`
-4. Run `pnpm start`
-5. Open the browser and go to `http://localhost:5173`
+2. Use the tool you like to deploy Gemma 4 12B on your local machine. You can use LM Studio, Ollama, etc.
+3. Clone the repository
+4. Run `pnpm install`
+5. Create a `.env` file and set the `OPENAI_API_KEY` to the API key of your Gemma 4 instance.
+6. Run `pnpm start`
+7. Open the browser and go to `http://localhost:5173`
 
 ## How to use
 
