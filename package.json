@@ -1,0 +1,56 @@
+{
+  "name": "gemma4-binary-analysis-agent",
+  "private": true,
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.0.8",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "@google/adk": "^1.4.0",
+    "@google/genai": "^2.13.0",
+    "@vitejs/plugin-react": "latest",
+    "adk-llm-bridge": "^0.5.3",
+    "dotenv": "^17.4.2",
+    "express": "latest",
+    "lucide-react": "latest",
+    "multer": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "vite": "latest",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@google/adk-devtools": "^1.4.0",
+    "@types/express": "latest",
+    "@types/multer": "latest",
+    "@types/node": "^26.1.1",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "concurrently": "latest",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2"
+  },
+  "scripts": {
+    "build": "pnpm build:agent && pnpm build:webapp",
+    "build:agent": "tsc -b src/tsconfig.agent.json",
+    "build:webapp": "tsc -b web/tsconfig.json && vite build --config web/vite.config.ts",
+    "start": "nodemon --exec adk run src/index.ts",
+    "web": "nodemon --exec adk web src/index.ts",
+    "apiserver": "adk api_server src/index.ts",
+    "webapp:dev": "pnpm build:agent && concurrently \"tsx watch web/server/index.ts\" \"vite --config web/vite.config.ts --host 127.0.0.1\"",
+    "webapp:preview": "vite preview --config web/vite.config.ts --host 127.0.0.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/samples/**",
+      "**/runs/**"
+    ]
+  }
+}
